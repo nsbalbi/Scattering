@@ -1,7 +1,7 @@
 # Scattering
 Function package for generating theoretical light scattering models. Composed during the 2021 CHARM REU Program for the Furst Group.
 
-<img src="https://github.com/nsbalbi/Scattering/blob/main/Examples/Results/Intensity%20Plot.png" width="60%">
+<img src="https://github.com/nsbalbi/Scattering/blob/main/Examples/Results/intensity_plot.png" width="60%">
 
 ## Usage
 
@@ -30,11 +30,11 @@ _, _, _, _, [q, _, s_q, _, _, _, _, _] = mie_scattering(n_p, n_s, a_p, lambda_va
 ...  = mie_scattering(n_p, n_s, a_p, lambda_vac, phi, sruct='SHS', optional_params=[0.2, 0.05])
 ```
 
-<img src="https://github.com/nsbalbi/Scattering/blob/main/Examples/Results/S(q)%20Models.png" width="45%">
+<img src="https://github.com/nsbalbi/Scattering/blob/main/Examples/Results/S_q_models.png" width="45%">
 
-The code is sufficiently optimized so that 100+ calls to mie/rayleigh_scattering can occur in under a second. See mie_vs_rayleigh_l_star.py for an example of such, the results of which are shown below.
+The code is sufficiently optimized so that 100+ calls to mie/rayleigh_scattering can occur in under a second. See mie_vs_rayleigh.py for an example of such, the results of which are shown below.
 
-<img src="https://github.com/nsbalbi/Scattering/blob/main/Examples/Results/Mie%20vs%20Rayleigh%20l_star.png" width="90%">
+<img src="https://github.com/nsbalbi/Scattering/blob/main/Examples/Results/mie_vs_rayleigh.png" width="100%">
 
 ## Other Resources
 

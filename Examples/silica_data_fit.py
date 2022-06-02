@@ -49,9 +49,15 @@ ax1.plot(phi_range, l_star_phi[:, 1]*1e6, linestyle='--', label='Hard Sphere', l
 ax1.plot(phi_range, l_star_phi[:, 2]*1e6, linestyle=':', label='Sticky Hard Sphere', linewidth=2, c=c[2])
 ax1.plot(phi_range, l_star_phi[:, 3]*1e6, linestyle='-.', label='1.2$a_p$ Excluded Annulus', linewidth=2, c=c[3])
 ax1.plot(silica_data[0, :], silica_data[1, :]*1e6, 'k.', label='Silica Data', markersize=10)
+
+# Format Figure
 ax1.legend()
 ax1.set(xlabel=r'$\phi$', ylabel='l* [µm]',
         title=r'$n_p$ = %.3f, $n_s$ = %.3f, $a_p$ = %i nm, $\lambda$ = %i nm'
               % (n_p, n_s, a_p*1e9, lambda_vac*1e9))
+ax1.tick_params(direction='in', bottom=True, top=True, left=True, right=True)
+fig.set_size_inches(6, 5)
 
+# Save and Show Figure
+plt.savefig('Results\silica_data_fit.png', dpi=400, bbox_inches="tight")
 plt.show()

@@ -30,9 +30,15 @@ ax1.plot(q, np.ones_like(s_q[:, 0]), 'k', label='No Interaction', linewidth=2)
 ax1.plot(q, s_q[:, 0], 'k-.', label='Hard Sphere', linewidth=2)
 ax1.plot(q, s_q[:, 1], 'k:', label='1.2$a_p$ Excluded Annulus', linewidth=2)
 ax1.plot(q, s_q[:, 2], 'k--', label='Sticky Hard Sphere', linewidth=2)
+
+# Format Figure
 ax1.set(xlabel=r'$q$', ylabel='S(q)',
         title=r'$n_p$ = %.3f, $n_s$ = %.3f, $a_p$ = %i nm, $\lambda$ = %i nm, $\phi$ = %.2f'
               % (n_p, n_s, a_p*1e9, lambda_vac*1e9, phi))
 ax1.legend()
+ax1.tick_params(direction='in', bottom=True, top=True, left=True, right=True)
+fig.set_size_inches(7, 5)
 
+# Save and Show Figure
+plt.savefig('Results\S_q_models.png', dpi=400, bbox_inches="tight")
 plt.show()

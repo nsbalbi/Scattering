@@ -39,8 +39,15 @@ for i in range(np.size(a_p_range)):
     else:
         ax1.plot(q, p_q[:, i, 0] / p_q[0, i, 0], label=r'$a_p$ = %i nm' % (a_p_range[i] * 1e9), c=c[i])
         ax1.plot(q, p_q[:, i, 1] / p_q[0, i, 1], linestyle='--', c=c[i])
+
+# Format Figure
 ax1.set(xlabel='q', ylabel='Normalized P(q)', title=r'$n_p$ = %.3f, $n_s$ = %.3f, $\lambda$ = %i nm, $\phi$ = %.2f' % (n_p, n_s, lambda_vac*1e9, phi))
 ax1.legend(loc='upper right')
 ax1.set(ylim=[-0.05, 1.1])
+ax1.tick_params(direction='in', bottom=True, top=True, left=True, right=True)
+fig.set_size_inches(6, 5)
+
+# Save and Show Figure
+plt.savefig('Results\P_q_vs_a_p.png', dpi=400, bbox_inches="tight")
 plt.show()
 

@@ -42,17 +42,27 @@ for i in range(n_range):
 fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
 ax1.plot(phi_range, l_star[:, 0, 0]*1e6, 'k', label='Mie', linewidth=2)
 ax1.plot(phi_range, l_star[:, 0, 1]*1e6, 'k--', label='Rayleigh', linewidth=2)
-ax1.legend()
-ax1.set(xlabel=r'$\phi$', ylabel='l* [µm]')
 
 ax2.plot(a_p_range*1e9, l_star[:, 1, 0]*1e6, 'k', label='Mie', linewidth=2)
 ax2.plot(a_p_range*1e9, l_star[:, 1, 1]*1e6, 'k--', label='Rayleigh', linewidth=2)
-ax2.set(xlabel=r'$a_p$ [nm]')
 
 ax3.plot(n_p_range, l_star[:, 2, 0]*1e6, 'k', label='Mie', linewidth=2)
 ax3.plot(n_p_range, l_star[:, 2, 1]*1e6, 'k--', label='Rayleigh', linewidth=2)
-ax3.set(xlabel=r'$n_p$')
 
+# Format Figure
+ax1.legend()
+ax1.set(xlabel=r'$\phi$', ylabel='l* [µm]')
+ax1.tick_params(direction='in', bottom=True, top=True, left=True, right=True)
+ax2.set(xlabel=r'$a_p$ [nm]')
+ax2.tick_params(direction='in', bottom=True, top=True, left=True, right=True)
+ax3.set(xlabel=r'$n_p$')
+ax3.tick_params(direction='in', bottom=True, top=True, left=True, right=True)
+fig.set_size_inches(15, 5)
 # title with default parameters listed
 plt.suptitle(r'$n_p$ = %.3f, $n_s$ = %.3f, $a_p$ = %i nm, $\lambda$ = %i nm, $\phi$ = %.2f' % (n_p, n_s, a_p*1e9, lambda_vac*1e9, phi))
+
+# Save and Show Figure
+plt.savefig('Results\mie_vs_rayleigh.png', dpi=400, bbox_inches="tight")
 plt.show()
+
+

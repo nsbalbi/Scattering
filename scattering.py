@@ -8,8 +8,6 @@ University of Delaware Department of Chemical and Biomolecular Engineering. Last
 import numpy as np
 import scipy.special as sps
 import sys
-from scattering_test import *
-
 
 def mie_pi_tau(theta, alpha):
     """
@@ -40,13 +38,13 @@ def mie_pi_tau(theta, alpha):
     # Caluclation of pi and tau via Kerker's method
     for i in range(n_terms):  # loop over rows
         pi[i, :] = -sps.lpmv(1, i + 1, cos_theta) / sin_theta  # generates 1st order Legendre polynomials
-        if i == 0:
+        if i == 0:  # n = 1
             pi_prime[i, :] = np.zeros(shape=n_ang)
             tau[i, :] = cos_theta * pi[i, :]
-        elif i == 1:
+        elif i == 1:  # n = 2
             pi_prime[i, :] = 3 * np.ones(shape=n_ang)
             tau[i, :] = cos_theta * pi[i, :] - 3 * sin_theta ** 2
-        else:
+        else:  # n > 2
             for j in range(n_ang):  # loop over columns
                 pi_prime[i, j] = (2 * i + 1) * pi[i - 1, j] + pi_prime[i - 2, j]
             tau[i, :] = cos_theta * pi[i, :] - sin_theta ** 2 * pi_prime[i, :]
@@ -178,6 +176,9 @@ def percus_yevick_annulus(q, a_p, a_e, phi):
         s_q: the structure factor at the corresponding scattering angles
     """
     phi_e = phi * (a_e / a_p) ** 3  # effective volume fraction
+    if phi_e > 0.74:
+        print('Warning: Effective volume fraction for excluded annulus is greater than the physical limit of 0.74\n'
+              'Lower phi or excluded annulus to resolve')
 
     qa2 = 2 * q * a_e  # twice qa, for efficiency/conciseness
     lambda_1 = (1 + 2 * phi_e) ** 2 / (1 - phi_e) ** 4
@@ -364,7 +365,9 @@ def rayleigh_scattering(n_p, n_s, a_p, lambda_vac, phi, n_ang=100, struct='none'
         optional_params: list of optional parameters required for some structure factor calculations
             - 'PYAnnulus': [a_e]
                 - a_e: float, effective sphere radius (including excluded annulus)
-
+            - 'SHS': [tau, epsilon]
+                - tau: float, "stickiness" parameter within {0, 1}
+                - epsilon: float, perturbation parameter within {0, 0.1}
     Returns:
         theta: the angles at which scattering intensities are calculated
         i1: perpendicular scattering intensity at corresponding scattering angles

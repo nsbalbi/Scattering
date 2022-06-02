@@ -57,7 +57,7 @@ ax2.set(xlabel=r'$a_p$ [nm]')
 ax2.tick_params(direction='in', bottom=True, top=True, left=True, right=True)
 ax3.set(xlabel=r'$n_p$')
 ax3.tick_params(direction='in', bottom=True, top=True, left=True, right=True)
-fig.set_size_inches(15, 5)
+fig.set_size_inches(18, 5)
 # title with default parameters listed
 plt.suptitle(r'$n_p$ = %.3f, $n_s$ = %.3f, $a_p$ = %i nm, $\lambda$ = %i nm, $\phi$ = %.2f' % (n_p, n_s, a_p*1e9, lambda_vac*1e9, phi))
 
